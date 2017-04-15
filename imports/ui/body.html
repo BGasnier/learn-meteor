@@ -1,0 +1,47 @@
+
+
+<body>
+
+  <div class="container">
+
+    <header>
+
+      <h1>Word List</h1>
+
+    </header>
+    <button class="restart-button" type="button">Restart!</button>
+    <button class="learn-button" type="button">Learn!</button> 
+    <ul>
+      {{#each words}}
+        {{> word}}
+      {{/each}}
+    </ul>
+
+  </div>
+  
+   {{> upload}}
+
+</body>
+
+ <template name="upload">
+  <h4 class="page-header">Upload a CSV</h4>
+
+  {{#unless uploading}}
+    <input type="file" name="uploadCSV">
+  {{else}}
+    <p><i class="fa fa-spin fa-refresh"></i> Uploading files...</p>
+  {{/unless}}
+</template>
+
+<template name="word">
+        <form class="word-guess">
+  <li class="{{#if correct}}correct{{else}}{{#if trial}}incorrect{{/if}}{{/if}}">{{estonian}}:{{#if hint}} {{hint}}{{else}} {{> guess}}{{/if}}
+  <button class="favorite-button" type="button">&#x2605;</button> </li>
+      </form>  
+</template>
+
+
+<template name="guess">
+  <input type="text" name="text" estonian="{{estonian}}" placeholder="Pane prantsuse sõna" />
+</template>
+
